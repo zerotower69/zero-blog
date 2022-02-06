@@ -1,10 +1,21 @@
 <template>
-  <div id="nav">
+  <div id="app-wrapper">
     <router-link to="/">Home</router-link> |
     <router-link to="/about">About</router-link>
+    <zt-player></zt-player>
   </div>
-  <router-view/>
+  <router-view />
 </template>
+
+<script>
+// 这里依然使用vue2的语法
+import ztPlayer from "zt-player";
+export default {
+  components: {
+    ztPlayer,
+  },
+};
+</script>
 
 <style lang="less">
 #app {
