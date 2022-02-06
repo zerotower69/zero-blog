@@ -1,55 +1,30 @@
 <template>
-  <v-app id="app">
-    <!-- 导航栏 -->
-    <TopNavBar></TopNavBar>
-    <!-- 侧边导航栏 -->
-    <SideNavBar></SideNavBar>
-    <!-- 内容 -->
-    <v-content>
-      <router-view :key="$route.fullPath" />
-    </v-content>
-    <!-- 页脚 -->
-    <Footer></Footer>
-    <!-- 返回顶部 -->
-    <BackTop></BackTop>
-    <!-- 搜索模态框 -->
-    <searchModel></searchModel>
-    <!-- 登录模态框 -->
-    <LoginModel></LoginModel>
-    <!-- 注册模态框 -->
-    <RegisterModel></RegisterModel>
-    <!-- 忘记密码模态框 -->
-    <ForgetModel></ForgetModel>
-    <!-- 音乐播放器 -->
-<!--    <Player></Player>-->
-    <!-- 聊天室 -->
-    <ChatRoom></ChatRoom>
-  </v-app>
+  <div id="nav">
+    <router-link to="/">Home</router-link> |
+    <router-link to="/about">About</router-link>
+  </div>
+  <router-view/>
 </template>
 
-<script>
-import TopNavBar from "./components/layout/TopNavBar";
-import SideNavBar from "./components/layout/SideNavBar";
-import Footer from "./components/layout/Footer";
-import BackTop from "./components/BackTop";
-import searchModel from "./components/model/SearchModel";
-import LoginModel from "./components/model/LoginModel";
-import RegisterModel from "./components/model/RegisterModel";
-import ForgetModel from "./components/model/ForgetModel";
-// import Player from "zw-player";
-import ChatRoom from "./components/ChatRoom";
-export default {
-  components: {
-    TopNavBar,
-    // Player,
-    SideNavBar,
-    Footer,
-    BackTop,
-    searchModel,
-    LoginModel,
-    RegisterModel,
-    ForgetModel,
-    ChatRoom
+<style lang="less">
+#app {
+  font-family: Avenir, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  color: #2c3e50;
+}
+
+#nav {
+  padding: 30px;
+
+  a {
+    font-weight: bold;
+    color: #2c3e50;
+
+    &.router-link-exact-active {
+      color: #42b983;
+    }
   }
-};
-</script>
+}
+</style>
