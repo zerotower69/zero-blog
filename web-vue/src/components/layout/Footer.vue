@@ -2,9 +2,9 @@
   <v-footer app padless absolute v-if="!this.isMessage">
     <div class="footer-wrap">
       <!--      TODO: 2022年再放上来<div>&copy; 2021 - {{ new Date().getFullYear() }} By ZEROTOWER</div>-->
-      <div>&copy; 2021 By ZEROTOWER</div>
+      <div>&copy; 2021 - {{ new Date().getFullYear() }} By ZEROTOWER</div>
       <a href="https://beian.miit.gov.cn/" target="_blank">
-        <!--        TODO: 将来的备案号-->
+        桂ICP备2022001352号-1
       </a>
     </div>
   </v-footer>
@@ -15,8 +15,8 @@ export default {
   computed: {
     isMessage() {
       return this.$route.path === "/message";
-    }
-  }
+    },
+  },
 };
 </script>
 

@@ -1,4 +1,4 @@
-const IS_PROD = process.env.NODE_ENV === "dproduction";
+const IS_PROD = process.env.NODE_ENV === "production";
 // 消除控制台打印
 const path = require("path");
 const UglifyJsPlugin = require("uglifyjs-webpack-plugin");
@@ -8,15 +8,16 @@ function resolve(dir) {
   return path.join(__dirname, dir);
 }
 //websocket协议 是否加密
-const socketProtocal="wss";
+const socketProtocal = "wss";
 // 项目的主要配置文件
 
 module.exports = {
   publicPath: IS_PROD ? "/" : "/",
   // 相对于打包路径index.html的路径
-  outputDir: process.env.outputDir || "dist",
+  outputDir: "web-vue",
   // 'dist', 生产环境构建文件的目录
-  assetsDir: "static",
+  // assetsDir: "static",
+  // assetsPublicPath: '/',
   // 相对于outputDir的静态资源(js、css、img、fonts)目录
   transpileDependencies: ["vuetify"],
   // publicPath: "./",
@@ -26,7 +27,7 @@ module.exports = {
     proxy: {
       "/api": {
         target: IS_PROD
-          ? "https://api.zerotower.cn"
+          ? "http://zerotower.cn:10000"
           : "http://zerotower.cn:10000",
         // target: "http://api.zerotower.cn",
         changeOrigin: true,
@@ -36,7 +37,7 @@ module.exports = {
         }
       },
       "/socket": {
-        target:  IS_PROD ? `ws://zerotower.cn:10000` : "ws://localhost:10000", //websocket目标接口地址
+        target: IS_PROD ? `ws://zerotower.cn:10000` : "ws://zerotower.cn:10000", //websocket目标接口地址
         changeOrigin: true, //是否允许跨域
         pathRewrite: {
           "^/socket": "" //重写,
