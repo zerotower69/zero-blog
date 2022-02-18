@@ -11,7 +11,7 @@
         <img
           width="32"
           height="32"
-          src="https://www.static.talkxj.com/logo%20copy.png"
+          src="https://zerotower.oss-cn-beijing.aliyuncs.com/blog/chart.png"
         />
         <div style="margin-left:12px">
           <div>聊天室</div>
@@ -147,11 +147,11 @@
     <!-- 未读数量 -->
     <div class="chat-btn" @click="open">
       <span class="unread" v-if="unreadCount > 0">{{ unreadCount }}</span>
-       <!-- TODO: 替换logo in future version-->
+      <!-- TODO: 替换logo in future version-->
       <img
         width="100%"
         height="100%"
-        src="https://www.static.talkxj.com/logo%20copy.png"
+        src="https://zerotower.oss-cn-beijing.aliyuncs.com/blog/chart.png"
       />
     </div>
   </div>
@@ -163,7 +163,7 @@ import Emoji from "./Emoji";
 import EmojiList from "../assets/js/emoji";
 export default {
   components: {
-    Emoji
+    Emoji,
   },
   updated() {
     var ele = document.getElementById("message");
@@ -184,7 +184,7 @@ export default {
       unreadCount: 0,
       isVoice: false,
       voiceActive: false,
-      startVoiceTime: null
+      startVoiceTime: null,
     };
   },
   methods: {
@@ -201,7 +201,11 @@ export default {
     },
     connect() {
       console.log("建立连接", process.env.NODE_ENV);
-      this.websocket = new WebSocket(`${location.protocol==="https"?"ws":"ws"}://${location.host}/socket/websocket`);
+      this.websocket = new WebSocket(
+        `${location.protocol === "https" ? "ws" : "ws"}://${
+          location.host
+        }/socket/websocket`
+      );
       // 连接发生错误的回调方法
       this.websocket.onerror = function(event) {
         console.log(event);
@@ -221,7 +225,7 @@ export default {
             break;
           case 2:
             that.chatRecordList = data.chatRecordList;
-            that.chatRecordList.forEach(item => {
+            that.chatRecordList.forEach((item) => {
               if (item.type === 5) {
                 that.voiceList.push(item.id);
               }
@@ -283,7 +287,7 @@ export default {
         ipAddr: returnCitySN["cip"],
         // eslint-disable-next-line no-undef
         ipSource: returnCitySN["cip"],
-        createTime: new Date()
+        createTime: new Date(),
       };
       console.log(socketMsg, "打印传递给websocket的信息");
       this.websocket.send(JSON.stringify(socketMsg));
@@ -296,7 +300,7 @@ export default {
     },
     // 展示菜单
     showBack(item, index, e) {
-      this.$refs.backBtn.forEach(item => {
+      this.$refs.backBtn.forEach((item) => {
         item.style.display = "none";
       });
       if (
@@ -314,7 +318,7 @@ export default {
       var socketMsg = {
         id: item.id,
         type: 4,
-        isVoice: item.type === 5
+        isVoice: item.type === 5,
       };
       this.websocket.send(JSON.stringify(socketMsg));
       this.$refs.backBtn[index].style.display = "none";
@@ -322,7 +326,7 @@ export default {
     closeAll() {
       this.isEmoji = false;
       if (this.chatRecordList.length > 0) {
-        this.$refs.backBtn.forEach(item => {
+        this.$refs.backBtn.forEach((item) => {
           item.style.display = "none";
         });
       }
@@ -339,7 +343,7 @@ export default {
             that.startVoiceTime = new Date();
             console.log("start recording");
           })
-          .catch(error => {
+          .catch((error) => {
             console.log("Recording failed.", error);
           });
       });
@@ -354,10 +358,10 @@ export default {
         return false;
       }
       var wav = this.rc.getRecord({
-        encodeTo: ENCODE_TYPE.WAV
+        encodeTo: ENCODE_TYPE.WAV,
       });
       var file = new File([wav], "voice.wav", {
-        type: wav.type
+        type: wav.type,
       });
       var formData = new window.FormData();
       formData.append("file", file);
@@ -375,8 +379,8 @@ export default {
         data: formData,
         method: "post",
         headers: {
-          "Content-Type": "multipart/form-data"
-        }
+          "Content-Type": "multipart/form-data",
+        },
       };
       this.axios(options);
     },
@@ -417,7 +421,7 @@ export default {
       }
       this.$refs.voiceTimes[this.voiceList.indexOf(item.id)].innerHTML =
         " " + str + " " + time + " ''";
-    }
+    },
   },
   computed: {
     isSelf() {
@@ -465,7 +469,7 @@ export default {
       return this.content.trim() !== ""
         ? "iconfont icon-zhifeiji submit-btn"
         : "iconfont icon-zhifeiji";
-    }
+    },
   },
   mounted() {
     // eslint-disable-next-line no-undef
@@ -474,7 +478,7 @@ export default {
     this.ipAddr = returnCitySN["cip"];
     // eslint-disable-next-line no-undef
     this.ipSource = returnCitySN["cip"];
-  }
+  },
 };
 </script>
 
