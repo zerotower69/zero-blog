@@ -12,6 +12,10 @@ import org.springframework.web.client.RestTemplate;
 
 /**
  * @author ZeroTower
+ * @version 01 2021-04-10
+ * 移除了elasticSearch,三方登录只使用github和gitee
+ * @version 02 2022-02-18
+ * 更新了GitHub和gitee的oauth信息
  */
 @MapperScan("xyz.zerotower.blog.dao")
 //@EnableDiscoveryClient

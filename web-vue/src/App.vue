@@ -21,7 +21,7 @@
     <!-- 忘记密码模态框 -->
     <ForgetModel></ForgetModel>
     <!-- 音乐播放器 -->
-<!--    <Player></Player>-->
+    <Player></Player>
     <!-- 聊天室 -->
     <ChatRoom></ChatRoom>
   </v-app>
@@ -36,12 +36,12 @@ import searchModel from "./components/model/SearchModel";
 import LoginModel from "./components/model/LoginModel";
 import RegisterModel from "./components/model/RegisterModel";
 import ForgetModel from "./components/model/ForgetModel";
-// import Player from "zw-player";
+//引入音乐播放器
+import Player from "./components/zw-player/player";
 import ChatRoom from "./components/ChatRoom";
 export default {
   components: {
     TopNavBar,
-    // Player,
     SideNavBar,
     Footer,
     BackTop,
@@ -49,7 +49,8 @@ export default {
     LoginModel,
     RegisterModel,
     ForgetModel,
-    ChatRoom
-  }
+    Player,
+    ChatRoom,
+  },
 };
 </script>

@@ -24,7 +24,7 @@ import NProgress from "nprogress";
 import "nprogress/nprogress.css";
 
 NProgress.configure({
-  showSpinner:false
+  showSpinner: false
 })
 
 Vue.prototype.config = config;
@@ -37,15 +37,16 @@ Vue.use(VueAxios, axios);
 Vue.use(VueImageSwipe);
 Vue.use(Toast);
 
-Vue.filter("date", function(value) {
+//时间格式化为年月日
+Vue.filter("date", function (value) {
   return moment(value).format("YYYY-MM-DD");
 });
-
-Vue.filter("hour", function(value) {
+//时间格式化为时分秒
+Vue.filter("hour", function (value) {
   return moment(value).format("HH:mm:ss");
 });
 
-Vue.filter("num", function(value) {
+Vue.filter("num", function (value) {
   if (value >= 1000) {
     return (value / 1000).toFixed(1) + "k";
   }
@@ -69,14 +70,14 @@ router.afterEach(() => {
 });
 
 axios.interceptors.response.use(
-  function(response) {
+  function (response) {
     switch (response.data.code) {
       case 50000:
         Vue.prototype.$toast({ type: "error", message: "系统异常" });
     }
     return response;
   },
-  function(error) {
+  function (error) {
     return Promise.reject(error);
   }
 );
